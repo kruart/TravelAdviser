@@ -1,7 +1,7 @@
-package org.itsimulator.germes.app.service.impl;
+package org.itsimulator.germes.app.service;
 
 import org.itsimulator.germes.app.model.entity.geography.City;
-import org.itsimulator.germes.app.service.GeographicService;
+import org.itsimulator.germes.app.service.impl.GeographicServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 

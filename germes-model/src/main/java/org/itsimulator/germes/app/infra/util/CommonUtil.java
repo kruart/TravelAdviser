@@ -29,6 +29,6 @@ public class CommonUtil {
      * @return
      */
     public static <T>List<T> getSafeList(List<T> source) {
-        return Collections.unmodifiableList(Optional.of(source).orElse(Collections.emptyList()));
+        return Collections.unmodifiableList(Optional.ofNullable(source).orElse(Collections.emptyList()));
     }
 }
