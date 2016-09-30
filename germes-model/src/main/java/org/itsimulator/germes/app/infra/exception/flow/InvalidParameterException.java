@@ -5,6 +5,7 @@ import org.itsimulator.germes.app.infra.exception.FlowException;
 /**
  * Signals that incorrect parameter was passed to method/constructor
  * @author admin
+ *
  */
 public class InvalidParameterException extends FlowException {
 

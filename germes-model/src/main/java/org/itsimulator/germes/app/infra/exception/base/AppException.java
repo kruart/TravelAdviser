@@ -3,6 +3,7 @@ package org.itsimulator.germes.app.infra.exception.base;
 /**
  * Base class for all application-specific exceptions
  * @author admin
+ *
  */
 public class AppException extends RuntimeException {
 
