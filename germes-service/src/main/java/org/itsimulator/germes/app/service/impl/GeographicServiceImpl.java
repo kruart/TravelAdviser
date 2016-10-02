@@ -28,7 +28,7 @@ public class GeographicServiceImpl implements GeographicService {
 
     @Override
     public void saveCity(City city) {
-        if (!cities.contains(city)) {
+        if(!cities.contains(city)) {
             cities.add(city);
         }
     }
