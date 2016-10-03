@@ -6,7 +6,7 @@
     <parent>
         <artifactId>germes</artifactId>
         <groupId>org.it-simulator</groupId>
-        <version>0.0.7</version>
+        <version>0.0.8</version>
     </parent>
     <artifactId>germes-service</artifactId>
 
@@ -26,11 +26,23 @@
         <dependency>
             <groupId>org.it-simulator</groupId>
             <artifactId>germes-model</artifactId>
-            <version>0.0.7</version>
+            <version>${project.parent.version}</version>
         </dependency>
+
+        <!--Grizzly 2 Http Container-->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-grizzly2-http</artifactId>
+        </dependency>
+        <!-- Jersey core Servlet 3.x implementation-->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+        </dependency>
+        <!--Jersey JSON Jackson (2.x) entity providers support module-->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
         </dependency>
     </dependencies>
 
