@@ -1,8 +1,7 @@
 package org.itsimulator.germes.app.service.transform.impl;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.itsimulator.germes.app.infra.util.Checks;
+import org.itsimulator.germes.app.infra.util.CommonUtil;
 import org.itsimulator.germes.app.infra.util.ReflectionUtil;
 import org.itsimulator.germes.app.model.entity.base.AbstractEntity;
 import org.itsimulator.germes.app.rest.dto.base.BaseDTO;
@@ -28,14 +27,14 @@ public class SimpleDTOTransformer implements Transformer {
         dto.transform(entity);
 
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("SimpleDTOTransformer.transform: {} DTO object", ReflectionToStringBuilder.toString(dto, ToStringStyle.SHORT_PREFIX_STYLE));
+            LOGGER.debug("SimpleDTOTransformer.transform: {} DTO object", CommonUtil.toString(dto));
         }
 
         return dto;
     }
 
     @Override
-    public <T extends AbstractEntity, P extends BaseDTO<T>> T untransform(P dto, Class<T> clz) {
+    public <T extends AbstractEntity, P extends BaseDTO<T>> T untransform(final P dto, final Class<T> clz) {
         checkParams(dto, clz);
 
         T entity = ReflectionUtil.createInstance(clz);
@@ -44,7 +43,7 @@ public class SimpleDTOTransformer implements Transformer {
         dto.untransform(entity);
 
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("SimpleDTOTransformer.untransform: {} entity", ReflectionToStringBuilder.toString(entity, ToStringStyle.SHORT_PREFIX_STYLE));
+            LOGGER.debug("SimpleDTOTransformer.untransform: {} entity", CommonUtil.toString(dto));
         }
 
         return entity;

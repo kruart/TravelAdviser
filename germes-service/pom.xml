@@ -6,7 +6,7 @@
     <parent>
         <artifactId>germes</artifactId>
         <groupId>org.it-simulator</groupId>
-        <version>0.1.3</version>
+        <version>0.1.4</version>
     </parent>
     <artifactId>germes-service</artifactId>
 
@@ -56,6 +56,12 @@
             <groupId>org.glassfish.jersey.test-framework.providers</groupId>
             <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
     </dependencies>
 
