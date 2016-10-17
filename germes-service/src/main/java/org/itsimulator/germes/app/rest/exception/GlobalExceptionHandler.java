@@ -8,7 +8,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 /**
- * Global Jersey handler that caches any Exception-based errors
+ * Global Jersey handler that catches any Exception-based errors
  *
  * @author admin
  *

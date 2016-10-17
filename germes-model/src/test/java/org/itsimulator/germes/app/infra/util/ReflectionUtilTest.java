@@ -2,6 +2,7 @@ package org.itsimulator.germes.app.infra.util;
 
 import org.itsimulator.germes.app.infra.exception.ConfigurationException;
 import org.itsimulator.germes.app.infra.exception.flow.InvalidParameterException;
+import org.itsimulator.germes.app.infra.util.annotation.Ignore;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -16,18 +17,18 @@ import static org.junit.Assert.*;
  */
 public class ReflectionUtilTest {
     @Test
-    public void createInstanceSuccess() throws Exception {
+    public void testCreateInstanceSuccess() throws Exception {
         Object value = ReflectionUtil.createInstance(Source.class);
         assertNotNull(value);
     }
 
     @Test(expected = ConfigurationException.class)
-    public void createInstanceFailure() throws Exception {
+    public void testCreateInstanceFailure() throws Exception {
         ReflectionUtil.createInstance(Restricted.class);
     }
 
     @Test
-    public void findSimilarFieldsSuccess() throws Exception {
+    public void testFindSimilarFieldsSuccess() throws Exception {
         List<String> fields = ReflectionUtil.findSimilarFields(Source.class, Destination.class);
 
         assertNotNull(fields);
@@ -36,7 +37,7 @@ public class ReflectionUtilTest {
     }
 
     @Test
-    public void copyFieldsSuccess() throws Exception {
+    public void testCopyFieldsSuccess() throws Exception {
         Source src = new Source();
         src.setValue(10);
 
@@ -47,25 +48,65 @@ public class ReflectionUtilTest {
         assertEquals(dest.getValue(), 10);
     }
 
+    @Test
+    public void copyFindSimilarFieldsWithIgnoreSuccess() {
+        List<String> fields = ReflectionUtil.findSimilarFields(Source.class, Destination.class);
+        assertFalse(fields.contains("ignored"));
+    }
+
+    @Test
+    public void copyFindSimilarFieldsForStaticAndFinalSuccess() {
+        List<String> fields = ReflectionUtil.findSimilarFields(Source.class, Destination.class);
+        assertFalse(fields.contains("staticField"));
+        assertFalse(fields.contains("finalField"));
+    }
+
+    @Test
+    public void copyFindSimilarFieldsForBaseFieldSuccess() {
+        List<String> fields = ReflectionUtil.findSimilarFields(Source.class, Destination.class);
+        assertTrue(fields.contains("baseField"));
+    }
+
     @Test(expected=InvalidParameterException.class)
-    public void copyFieldsDestinationNullFailure() throws Exception {
+    public void testCopyFieldsDestinationNullFailure() throws Exception {
         Source src = new Source();
         ReflectionUtil.copyFields(src, null, Collections.emptyList());
     }
 }
 
-class Source {
+class BaseSource {
+    private int baseField;
+}
+
+class BaseDestination {
+    private int baseField;
+}
+
+class Source extends BaseSource {
     private int value;
 
     private String text;
+
+    @Ignore
+    private int ignored = 2;
+
+    private static int staticField;
+
+    private final int finalField = 0;
 
     public void setValue(int value) {
         this.value = value;
     }
 }
 
-class Destination {
+class Destination extends BaseDestination {
     private int value;
+
+    private int ignored;
+
+    private int staticField;
+
+    private int finalField = 0;
 
     public int getValue() {
         return value;
