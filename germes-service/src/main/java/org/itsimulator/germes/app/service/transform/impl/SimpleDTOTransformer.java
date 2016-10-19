@@ -17,13 +17,19 @@ import org.slf4j.LoggerFactory;
 public class SimpleDTOTransformer implements Transformer {
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleDTOTransformer.class);
 
+    private final FieldProvider provider;
+
+    public SimpleDTOTransformer() {
+        provider = new CacheFieldProvider();
+    }
+
     @Override
     public <T extends AbstractEntity, P extends BaseDTO<T>> P transform(final T entity, final Class<P> clz) {
         checkParams(entity, clz);
 
         P dto = ReflectionUtil.createInstance(clz);
         //Now just copy all the similar fields
-        ReflectionUtil.copyFields(entity, dto, ReflectionUtil.findSimilarFields(entity.getClass(), clz));
+        ReflectionUtil.copyFields(entity, dto, provider.getFieldNames(entity.getClass(), clz));
         dto.transform(entity);
 
         if (LOGGER.isDebugEnabled()) {
@@ -39,7 +45,7 @@ public class SimpleDTOTransformer implements Transformer {
 
         T entity = ReflectionUtil.createInstance(clz);
 
-        ReflectionUtil.copyFields(dto, entity, ReflectionUtil.findSimilarFields(dto.getClass(), clz));
+        ReflectionUtil.copyFields(dto, entity, provider.getFieldNames(dto.getClass(), clz));
         dto.untransform(entity);
 
         if (LOGGER.isDebugEnabled()) {
