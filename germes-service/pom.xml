@@ -6,7 +6,7 @@
     <parent>
         <artifactId>germes</artifactId>
         <groupId>org.it-simulator</groupId>
-        <version>0.2.1</version>
+        <version>0.2.2</version>
     </parent>
     <artifactId>germes-service</artifactId>
 
@@ -63,7 +63,7 @@
             <artifactId>log4j-web</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-
+        <!--powermock and mockito-->
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
@@ -74,6 +74,13 @@
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito</artifactId>
             <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--JMockit-->
+        <dependency>
+            <groupId>org.jmockit</groupId>
+            <artifactId>jmockit</artifactId>
+            <version>${jmockit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
