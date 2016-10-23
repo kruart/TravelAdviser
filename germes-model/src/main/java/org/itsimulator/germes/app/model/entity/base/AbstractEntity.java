@@ -2,6 +2,7 @@ package org.itsimulator.germes.app.model.entity.base;
 
 import org.itsimulator.germes.app.model.entity.person.Account;
 
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 /**
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
  * @author admin
  *
  */
+@MappedSuperclass
 public abstract class AbstractEntity {
 
     /**

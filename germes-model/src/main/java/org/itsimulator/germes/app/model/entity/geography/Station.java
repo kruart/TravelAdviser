@@ -5,6 +5,8 @@ import org.itsimulator.germes.app.model.entity.base.AbstractEntity;
 import org.itsimulator.germes.app.model.entity.transport.TransportType;
 import org.itsimulator.germes.app.model.search.criteria.StationCriteria;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Objects;
 
 /**
@@ -14,6 +16,8 @@ import java.util.Objects;
  * @author admin
  *
  */
+@Table(name = "STATION")
+@Entity
 public class Station extends AbstractEntity{
     private City city;
 
