@@ -5,8 +5,7 @@ import org.itsimulator.germes.app.model.entity.base.AbstractEntity;
 import org.itsimulator.germes.app.model.entity.transport.TransportType;
 import org.itsimulator.germes.app.model.search.criteria.StationCriteria;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -44,10 +43,13 @@ public class Station extends AbstractEntity{
         this.transportType = Objects.requireNonNull(transportType);
     }
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {})
+    @JoinColumn(name = "CITY_ID")
     public City getCity() {
         return city;
     }
 
+    @Embedded
     public Address getAddress() {
         return address;
     }
@@ -56,6 +58,7 @@ public class Station extends AbstractEntity{
         this.address = address;
     }
 
+    @Column(name = "PHONE", length = 16)
     public String getPhone() {
         return phone;
     }
@@ -64,6 +67,7 @@ public class Station extends AbstractEntity{
         this.phone = phone;
     }
 
+    @Embedded
     public Coordinate getCoordinate() {
         return coordinate;
     }
@@ -72,6 +76,8 @@ public class Station extends AbstractEntity{
         this.coordinate = coordinate;
     }
 
+    @Enumerated
+    @Column(name = "TRANSPORT_TYPE", nullable = false)
     public TransportType getTransportType() {
         return transportType;
     }
