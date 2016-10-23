@@ -6,10 +6,9 @@ import org.itsimulator.germes.app.model.entity.transport.TransportType;
 import org.itsimulator.germes.app.rest.dto.CityDTO;
 import org.itsimulator.germes.app.rest.service.base.BaseResource;
 import org.itsimulator.germes.app.service.GeographicService;
-import org.itsimulator.germes.app.service.impl.GeographicServiceImpl;
 import org.itsimulator.germes.app.service.transform.Transformer;
-import org.itsimulator.germes.app.service.transform.impl.SimpleDTOTransformer;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -36,10 +35,11 @@ public class CityResource extends BaseResource {
      */
     private final Transformer transformer;
 
-    public CityResource() {
-        transformer = new SimpleDTOTransformer();
+    @Inject
+    public CityResource(GeographicService service, Transformer transformer) {
+        this.transformer = transformer;
 
-        service = new GeographicServiceImpl();
+        this.service = service;
         City city = new City("Odessa");
         city.addStation(TransportType.AUTO);
         service.saveCity(city);

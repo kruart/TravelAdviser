@@ -5,9 +5,9 @@ import org.itsimulator.germes.app.model.entity.geography.Station;
 import org.itsimulator.germes.app.model.search.criteria.StationCriteria;
 import org.itsimulator.germes.app.model.search.criteria.range.RangeCriteria;
 import org.itsimulator.germes.app.persistence.repository.CityRepository;
-import org.itsimulator.germes.app.persistence.repository.inmemory.InMemoryCityRepository;
 import org.itsimulator.germes.app.service.GeographicService;
 
+import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +23,9 @@ import java.util.stream.Collectors;
 public class GeographicServiceImpl implements GeographicService {
     private CityRepository cityRepository;
 
-    public GeographicServiceImpl() {
-        cityRepository = new InMemoryCityRepository();
+    @Inject
+    public GeographicServiceImpl(CityRepository cityRepository) {
+        this.cityRepository = cityRepository;
     }
 
     @Override
