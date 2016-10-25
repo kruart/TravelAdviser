@@ -49,6 +49,10 @@ public class Station extends AbstractEntity{
         return city;
     }
 
+    public void setCity(City city) {
+        this.city = city;
+    }
+
     @Embedded
     public Address getAddress() {
         return address;
@@ -80,6 +84,10 @@ public class Station extends AbstractEntity{
     @Column(name = "TRANSPORT_TYPE", nullable = false)
     public TransportType getTransportType() {
         return transportType;
+    }
+
+    public void setTransportType(TransportType transportType) {
+        this.transportType = transportType;
     }
 
     /**

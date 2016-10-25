@@ -10,4 +10,5 @@ dependencies {
   testCompile 'org.powermock:powermock-module-junit4:' + powerMockVersion
   testCompile 'org.powermock:powermock-api-mockito:' + powerMockVersion
   testCompile 'org.jmockit:jmockit:1.21'
+  testRuntime 'com.h2database:h2:1.4.191'
 }

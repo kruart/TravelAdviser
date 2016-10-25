@@ -87,6 +87,13 @@ public abstract class AbstractEntity {
         this.modifiedBy = modifiedBy;
     }
 
+    @PrePersist
+    public void prePersist() {
+        if(getId() == 0) {
+            setCreatedAt(LocalDateTime.now());
+        }
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -60,7 +60,7 @@ public class City extends AbstractEntity {
         this.district = district;
     }
 
-    @Column(name = "REGION", nullable = false, length = 32, unique = true)
+    @Column(name = "REGION", nullable = false, length = 32)
     public String getRegion() {
         return region;
     }
