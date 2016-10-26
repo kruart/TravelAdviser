@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  */
 @MappedSuperclass
 public abstract class AbstractEntity {
+    public static final String FIELD_CREATED_AT = "createdAt";
 
     /**
      * Unique entity identifier
