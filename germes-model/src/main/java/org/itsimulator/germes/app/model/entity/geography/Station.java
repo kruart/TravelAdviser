@@ -18,6 +18,10 @@ import java.util.Objects;
 @Table(name = "STATION")
 @Entity
 public class Station extends AbstractEntity{
+    public static final String FIELD_TRANSPORT_TYPE = "transportType";
+
+    public static final String FIELD_CITY = "city";
+
     private City city;
 
     private Address address;
@@ -38,6 +42,9 @@ public class Station extends AbstractEntity{
      * @param city
      * @param transportType
      */
+    public Station() {
+    }
+
     public Station(final City city, final TransportType transportType) {
         this.city = Objects.requireNonNull(city);
         this.transportType = Objects.requireNonNull(transportType);

@@ -10,8 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Hibernate implementation of the {@link CityRepository} that stores
- * data in the database
+ * Hibernate implementation of the {@link CityRepository}
  *
  * @author admin
  *
