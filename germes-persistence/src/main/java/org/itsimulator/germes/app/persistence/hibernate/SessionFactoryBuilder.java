@@ -5,17 +5,15 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 import org.itsimulator.germes.app.infra.exception.PersistenceException;
-import org.itsimulator.germes.app.model.entity.geography.Address;
-import org.itsimulator.germes.app.model.entity.geography.City;
-import org.itsimulator.germes.app.model.entity.geography.Coordinate;
-import org.itsimulator.germes.app.model.entity.geography.Station;
-import org.itsimulator.germes.app.model.entity.person.Account;
 import org.itsimulator.germes.app.persistence.hibernate.interceptor.TimestampInterceptor;
+import org.reflections.Reflections;
 
 import javax.annotation.PreDestroy;
+import javax.persistence.Entity;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * Component that is responsible for managing Hibernate session factory
@@ -31,11 +29,10 @@ public class SessionFactoryBuilder {
 
         MetadataSources sources = new MetadataSources(registry);
 
-        sources.addAnnotatedClass(City.class);
-        sources.addAnnotatedClass(Station.class);
-        sources.addAnnotatedClass(Coordinate.class);
-        sources.addAnnotatedClass(Address.class);
-        sources.addAnnotatedClass(Account.class);
+        Reflections reflections = new Reflections("org.itsimulator.germes.app.model.entity");
+
+        Set<Class<?>> entityClasses = reflections.getTypesAnnotatedWith(Entity.class);
+        entityClasses.forEach(sources::addAnnotatedClass);
 
         org.hibernate.boot.SessionFactoryBuilder builder = sources.getMetadataBuilder()
                 .build()
