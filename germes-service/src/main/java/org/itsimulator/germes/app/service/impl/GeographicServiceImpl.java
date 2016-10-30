@@ -1,5 +1,6 @@
 package org.itsimulator.germes.app.service.impl;
 
+import org.itsimulator.germes.app.infra.exception.flow.ValidationException;
 import org.itsimulator.germes.app.model.entity.geography.City;
 import org.itsimulator.germes.app.model.entity.geography.Station;
 import org.itsimulator.germes.app.model.search.criteria.StationCriteria;
@@ -9,8 +10,13 @@ import org.itsimulator.germes.app.persistence.repository.StationRepository;
 import org.itsimulator.germes.app.service.GeographicService;
 
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Default implementation of the {@link GeographicService}
@@ -23,10 +29,15 @@ public class GeographicServiceImpl implements GeographicService {
 
     private final StationRepository stationRepository;
 
+    private final Validator validator;
+
     @Inject
     public GeographicServiceImpl(CityRepository cityRepository, StationRepository stationRepository) {
         this.cityRepository = cityRepository;
         this.stationRepository = stationRepository;
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
     }
 
     @Override
@@ -36,6 +47,11 @@ public class GeographicServiceImpl implements GeographicService {
 
     @Override
     public void saveCity(City city) {
+        Set<ConstraintViolation<City>> constraintViolations = validator.validate(city);
+        if(!constraintViolations.isEmpty()) {
+            throw new ValidationException("City validation failure", constraintViolations);
+        }
+
         cityRepository.save(city);
     }
 
