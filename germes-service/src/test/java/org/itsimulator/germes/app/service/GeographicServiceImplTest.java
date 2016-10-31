@@ -90,12 +90,14 @@ public class GeographicServiceImplTest {
 
     @Test
     public void testSearchStationsByNameSuccess() {
-        City city = createCity();
+        City city = new City("Zhytomyr");
+        city.setDistrict("Zhytomyr");
+        city.setRegion("Zhytomyr");
         city.addStation(TransportType.AUTO);
         city.addStation(TransportType.RAILWAY);
         service.saveCity(city);
 
-        List<Station> stations = service.searchStations(StationCriteria.byName("Odessa"), new RangeCriteria(1, 5));
+        List<Station> stations = service.searchStations(StationCriteria.byName("Zhytomyr"), new RangeCriteria(1, 5));
         assertNotNull(stations);
         assertEquals(stations.size(), 2);
         assertEquals(stations.get(0).getCity(), city);
