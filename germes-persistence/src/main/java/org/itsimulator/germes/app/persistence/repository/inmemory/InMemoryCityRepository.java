@@ -63,4 +63,9 @@ public class InMemoryCityRepository implements CityRepository {
         cities.clear();
     }
 
+    @Override
+    public void saveAll(List<City> cities) {
+        cities.forEach(this::save);
+    }
+
 }
