@@ -18,8 +18,11 @@ import java.util.Set;
  */
 @Table(name = "CITY")
 @Entity
+@NamedQuery(name = City.QUERY_DELETE_ALL, query = "delete from City")
 public class City extends AbstractEntity {
     public static final String FIELD_NAME = "name";
+
+    public static final String QUERY_DELETE_ALL = "deleteCities";
 
     private String name;
 

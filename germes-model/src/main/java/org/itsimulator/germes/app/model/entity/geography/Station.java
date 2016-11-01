@@ -17,10 +17,13 @@ import java.util.Objects;
  */
 @Table(name = "STATION")
 @Entity
+@NamedQuery(name = Station.QUERY_DELETE_ALL, query = "delete from Station")
 public class Station extends AbstractEntity{
     public static final String FIELD_TRANSPORT_TYPE = "transportType";
 
     public static final String FIELD_CITY = "city";
+
+    public static final String QUERY_DELETE_ALL = "deleteStations";
 
     private City city;
 
