@@ -17,3 +17,10 @@ bin/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+
+
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
