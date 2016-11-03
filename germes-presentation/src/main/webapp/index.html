@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html ng-app>
 <head>
-<meta charset="UTF-8">
-<title>Germes project</title>
+    <meta charset="UTF-8">
+    <title>Germes project</title>
 </head>
 <script src="bower_components/angular/angular.js"></script>
 <body>
-<div ng-bind="'Germes project'"></div>
+    <div ng-bind="'Germes project'"></div>
+
+    <div> Cities
+        <table style="width: 100%">
+            <tr>
+                <th>Name</th>
+                <th>District</th>
+                <th>Region</th>
+            </tr>
+            <tr ng-repeat="city in cities">
+                <td ng-bind="city.name"></td>
+                <td ng-bind="city.district"></td>
+                <td ng-bind="city.region"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
