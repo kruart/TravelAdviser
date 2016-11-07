@@ -1,15 +1,20 @@
 describe('Testing City Controller', function() {
 
-    it('Rows per page should have initial value', function() {
-          module("app");
-          var scope = {};
-          var ctrl;
-          inject(function($controller) { 
-              ctrl = $controller('CityCtrl', { $scope : scope}); 
-          });
+    beforeEach(module("app"));
 
-          expect(scope.rowsPerPage).toBeDefined();
-          expect(scope.rowsPerPage).toBe(10);
+    var scope = {};
+    beforeEach(inject(function($controller) {
+        $controller('CityCtrl', { $scope : scope});
+    }));
+
+    afterEach(function() {
+        //Cleaning resources
+    });
+
+    it('Rows per page should have initial value', function() {
+
+        expect(scope.rowsPerPage).toBeDefined();
+        expect(scope.rowsPerPage).toBe(10);
     });
 
 });
