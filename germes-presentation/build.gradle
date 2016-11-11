@@ -26,7 +26,8 @@ karma {
   reporters = ['progress']
   profile('default')  {
     libraryBases = ['bower_components/']
-    libraryFiles = ['angular/angular.js', 'angular-mocks/angular-mocks.js', 'angular-resource/angular-resource.js']
+    libraryFiles = ['angular/angular.js', 'angular-mocks/angular-mocks.js', 'angular-resource/angular-resource.js',
+                    'angular-translate/angular-translate.js']
 
     sourceBases = ['js/']
     sourceFiles = ['*.js']

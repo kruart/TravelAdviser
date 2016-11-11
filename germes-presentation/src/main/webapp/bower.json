@@ -1,12 +1,12 @@
 {
   "name": "germes-js",
-  "homepage": "https://github.com/kruart/TravelAdviser",
   "authors": [
     "kruart <arturk1991@gmail.com>"
   ],
   "description": "",
   "main": "",
   "license": "MIT",
+  "homepage": "",
   "ignore": [
     "**/.*",
     "node_modules",
