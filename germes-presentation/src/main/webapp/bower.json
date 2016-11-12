@@ -20,6 +20,7 @@
     "angular-mocks": "^1.5.8"
   },
   "devDependencies": {
-    "angular-translate": "^2.13.0"
+    "angular-translate": "^2.13.0",
+    "angular-translate-loader-static-files": "^2.13.0"
   }
 }

@@ -7,26 +7,10 @@ app.factory('cityService', [ '$resource', function($resource) {
 } ]);
 
 app.config(function($translateProvider) {
-    $translateProvider.translations('en', {
-        TITLE : 'Germes project',
-        CITIES : 'Cities',
-        CITY_NAME: 'Name',
-        CITY_DISTRICT : 'District',
-        CITY_REGION : 'Region'
-    });
-    $translateProvider.translations('ru', {
-        TITLE : 'Проект Гермес',
-        CITIES : 'Населенные пункты',
-        CITY_NAME: 'Название',
-        CITY_DISTRICT : 'Район',
-        CITY_REGION : 'Область'
-    });
-    $translateProvider.translations('uk', {
-        TITLE : 'Проект Гермес',
-        CITIES : 'Населені пункти',
-        CITY_NAME: 'Назва',
-        CITY_DISTRICT : 'Район',
-        CITY_REGION : 'Область'
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'l10n/locale-',
+        suffix: '.json'
     });
     $translateProvider.preferredLanguage('en');
+    $translateProvider.useSanitizeValueStrategy('escape');
 });
